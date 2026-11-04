@@ -1,0 +1,538 @@
+export type Language = "ar" | "en";
+export type Localized = Record<Language, string>;
+
+export const clinic = {
+  name: { ar: "ORIS Dental Clinic", en: "ORIS Dental Clinic" } satisfies Localized,
+  descriptor: { ar: "عيادة أوريس لطب الأسنان", en: "DENTAL CLINIC" } satisfies Localized,
+  city: { ar: "القاهرة الجديدة، مصر", en: "New Cairo, Egypt" } satisfies Localized,
+  isDemo: true,
+  siteUrl: "",
+  contact: {
+    phone: "+201044477749",
+    whatsapp: "+201044477748",
+    email: "",
+    address: "",
+    directionsUrl: "",
+  },
+  hours: {
+    ar: "السبت إلى الخميس، ١٢ ظهرًا إلى ١٠ مساءً. الجمعة مغلق",
+    en: "Saturday to Thursday, 12:00 pm to 10:00 pm. Friday closed",
+  } satisfies Localized,
+};
+
+export type Service = {
+  slug: string;
+  category: "general" | "cosmetic" | "restorative" | "surgical";
+  title: Localized;
+  short: Localized;
+  detail: Localized;
+  image: string;
+  imageAlt: Localized;
+};
+
+export const services: Service[] = [
+  {
+    slug: "general-dentistry",
+    category: "general",
+    title: { ar: "طب الأسنان العام", en: "General dentistry" },
+    short: {
+      ar: "فحوصات واستشارات أولية لفهم احتياجات صحة الفم والأسنان.",
+      en: "Dental examinations and consultations to understand your oral health needs.",
+    },
+    detail: {
+      ar: "تبدأ الزيارة بمراجعة الطبيب لاحتياجات الأسنان وصحة الفم، مع شرح ما يرتبط بالفحص وخيارات المتابعة المناسبة. تختلف الخطوات حسب تقييم الطبيب لكل حالة.",
+      en: "A general dentistry visit starts with a review of your dental and oral health needs. The dentist explains the examination and any appropriate next steps for your individual case.",
+    },
+    image: "photo-1629909613654-28e377c37b09",
+    imageAlt: { ar: "غرفة أسنان عصرية، صورة استرشادية", en: "Modern dental surgery, illustrative stock photo" },
+  },
+  {
+    slug: "cosmetic-dentistry",
+    category: "cosmetic",
+    title: { ar: "تجميل الأسنان", en: "Cosmetic dentistry" },
+    short: {
+      ar: "خطط تجميلية تبدأ بالاستشارة ومناقشة التوقعات والخيارات المتاحة.",
+      en: "Aesthetic consultations to discuss your goals and available options.",
+    },
+    detail: {
+      ar: "تتيح استشارة تجميل الأسنان مناقشة شكل الابتسامة والخيارات التي قد تناسب احتياجاتك. يشرح طبيب الأسنان الفوائد والاعتبارات لكل خيار بعد الفحص، من دون ضمان نتيجة موحدة.",
+      en: "A cosmetic dentistry consultation is a chance to discuss your smile and relevant options. Your dentist can explain the considerations after an examination. Outcomes vary by individual.",
+    },
+    image: "photo-1606811971618-4486d14f3f99",
+    imageAlt: { ar: "تفاصيل أسنان في عيادة، صورة استرشادية", en: "Dental care detail, illustrative stock photo" },
+  },
+  {
+    slug: "restorative-dentistry",
+    category: "restorative",
+    title: { ar: "ترميم الأسنان", en: "Restorative dentistry" },
+    short: {
+      ar: "خيارات ترميمية لاستعادة وظيفة الأسنان، يحددها الطبيب بعد التقييم.",
+      en: "Restorative options that a dentist can discuss after an individual assessment.",
+    },
+    detail: {
+      ar: "تُناقش خيارات الترميم بعد الفحص، وقد تشمل التيجان أو الجسور وفق حاجة السن. يوضح الطبيب المواد والخطوات والتكلفة قبل اتخاذ القرار.",
+      en: "Restorative options are discussed after an examination and may include crowns or bridges, depending on the tooth. Your dentist can explain materials, steps, and fees before you decide.",
+    },
+    image: "photo-1609840114035-3c981b782dfe",
+    imageAlt: { ar: "طبيب أسنان أثناء العمل، صورة استرشادية", en: "Dentist at work, illustrative stock photo" },
+  },
+  {
+    slug: "dental-implants",
+    category: "surgical",
+    title: { ar: "زراعة الأسنان", en: "Dental implants" },
+    short: {
+      ar: "استشارة لمراجعة خيارات تعويض الأسنان وتقييم ملاءمة الزراعة.",
+      en: "A consultation to discuss tooth replacement options and implant suitability.",
+    },
+    detail: {
+      ar: "تبدأ مناقشة الزراعة بتقييم سريري يحدد الخيارات المناسبة لكل حالة. يشرح الطبيب مراحل الإجراء والاعتبارات المرتبطة به خلال الاستشارة.",
+      en: "An implant consultation begins with a clinical assessment to discuss suitable options for your case. Your dentist can explain the stages and relevant considerations.",
+    },
+    image: "photo-1606811841689-23dfddce3e95",
+    imageAlt: { ar: "استشارة أسنان، صورة استرشادية", en: "Dental consultation, illustrative stock photo" },
+  },
+  {
+    slug: "orthodontics",
+    category: "cosmetic",
+    title: { ar: "تقويم الأسنان", en: "Orthodontics" },
+    short: {
+      ar: "تقييم خيارات التقويم وخطة المتابعة المناسبة بعد الفحص.",
+      en: "An assessment of orthodontic options and appropriate follow-up.",
+    },
+    detail: {
+      ar: "تساعد استشارة التقويم على مراجعة الإطباق واصطفاف الأسنان ومناقشة الخيارات. يحدد طبيب الأسنان الخطة بعد فحص الحالة.",
+      en: "An orthodontic consultation reviews tooth alignment and bite, and discusses potential options. The dentist determines a plan after examining your case.",
+    },
+    image: "photo-1606811971618-4486d14f3f99",
+    imageAlt: { ar: "فحص أسنان، صورة استرشادية", en: "Dental examination, illustrative stock photo" },
+  },
+  {
+    slug: "pediatric-dentistry",
+    category: "general",
+    title: { ar: "أسنان الأطفال", en: "Pediatric dentistry" },
+    short: {
+      ar: "زيارات مخصصة لصحة أسنان الأطفال في أجواء تراعي احتياجاتهم.",
+      en: "Dental visits for children in an approach mindful of their needs.",
+    },
+    detail: {
+      ar: "تتيح زيارة أسنان الأطفال للأهل مناقشة احتياجات الطفل مع طبيب الأسنان. تُشرح خطوات الزيارة بما يلائم عمر الطفل وحالته.",
+      en: "A pediatric dental visit gives families a chance to discuss a child's needs with a dentist. Visit steps are explained with the child's age and situation in mind.",
+    },
+    image: "photo-1606811841689-23dfddce3e95",
+    imageAlt: { ar: "طبيب أسنان مع مراجع صغير، صورة استرشادية", en: "Dentist with a young patient, illustrative stock photo" },
+  },
+  {
+    slug: "endodontics",
+    category: "restorative",
+    title: { ar: "علاج جذور الأسنان", en: "Endodontics" },
+    short: {
+      ar: "تقييم ألم الأسنان وخيارات علاج الجذور بعد الفحص السريري.",
+      en: "An examination to discuss root canal care and relevant options.",
+    },
+    detail: {
+      ar: "يقيّم الطبيب السن قبل اقتراح أي إجراء، ويوضح ما يتضمنه علاج الجذور والبدائل المناسبة إن وجدت.",
+      en: "The dentist examines the tooth before recommending any procedure, and explains what root canal care involves and whether alternatives are appropriate.",
+    },
+    image: "photo-1629909613654-28e377c37b09",
+    imageAlt: { ar: "كرسي أسنان داخل العيادة، صورة استرشادية", en: "Dental chair in a clinic, illustrative stock photo" },
+  },
+  {
+    slug: "oral-surgery",
+    category: "surgical",
+    title: { ar: "جراحة الفم", en: "Oral surgery" },
+    short: {
+      ar: "استشارة جراحية لمراجعة الحالة وشرح الخطوات والخيارات.",
+      en: "A surgical consultation to review your case and explain the options.",
+    },
+    detail: {
+      ar: "تبدأ الاستشارة بفحص الحالة ومناقشة الأسئلة المتعلقة بالإجراء المقترح. يشرح المختص الخطوات والاعتبارات قبل اتخاذ القرار.",
+      en: "A surgical consultation starts with a review of your case and questions about a proposed procedure. The specialist explains the steps and considerations before you decide.",
+    },
+    image: "photo-1609840114035-3c981b782dfe",
+    imageAlt: { ar: "أدوات طبية داخل غرفة أسنان، صورة استرشادية", en: "Dental care setting, illustrative stock photo" },
+  },
+];
+
+export type Doctor = {
+  slug: string;
+  name: Localized;
+  specialty: Localized;
+  bio: Localized;
+  serviceSlugs: string[];
+  image: string;
+  imageAlt: Localized;
+  qualifications: Localized[];
+};
+
+export const doctors: Doctor[] = [
+  {
+    slug: "mohamed-labib-zamzam",
+    name: { ar: "أ.د. محمد لبيب زمزم", en: "Prof. Mohamed Labib Zamzam" },
+    specialty: { ar: "أستاذ تركيبات الأسنان الثابتة، جامعة القاهرة", en: "Professor of Fixed Prosthodontics, Cairo University" },
+    bio: {
+      ar: "يركز ملفه المهني في ORIS على تركيبات الأسنان الثابتة والترميمات، مع خبرة أكاديمية في كلية طب الفم والأسنان بجامعة القاهرة.",
+      en: "His ORIS profile focuses on fixed prosthodontics and restorative dentistry, alongside an academic role at Cairo University's Faculty of Oral and Dental Medicine.",
+    },
+    serviceSlugs: ["restorative-dentistry", "cosmetic-dentistry"],
+    image: "photo-1622253692010-333f2da6031d",
+    imageAlt: { ar: "صورة استرشادية وليست صورة الطبيب", en: "Illustrative photo, not an official doctor portrait" },
+    qualifications: [],
+  },
+  {
+    slug: "hadiel-zamzam",
+    name: { ar: "د. هديل زمزم", en: "Dr. Hadiel Zamzam" },
+    specialty: { ar: "أخصائية تركيبات الأسنان ومحاضرة", en: "Prosthodontist and Lecturer" },
+    bio: {
+      ar: "تعمل في تركيبات الأسنان وتدرّس تركيبات الأسنان الثابتة في جامعة مصر الدولية وجامعة قناة السويس.",
+      en: "She practices prosthodontics and teaches fixed prosthodontics at Misr International University and Suez University.",
+    },
+    serviceSlugs: ["cosmetic-dentistry", "restorative-dentistry"],
+    image: "photo-1559839734-2b71ea197ec2",
+    imageAlt: { ar: "صورة استرشادية وليست صورة الطبيبة", en: "Illustrative photo, not an official doctor portrait" },
+    qualifications: [],
+  },
+  {
+    slug: "ahmed-soliman",
+    name: { ar: "د. أحمد سليمان", en: "Dr. Ahmed Soliman" },
+    specialty: { ar: "طب الأسنان التجميلي ومحاضر تركيبات الأسنان", en: "Esthetic Dentistry and Lecturer of Prosthodontics" },
+    bio: {
+      ar: "يجمع عمله بين طب الأسنان التجميلي والتدريس الأكاديمي في قسم تركيبات الأسنان بجامعة القاهرة.",
+      en: "His work combines esthetic dentistry with an academic role in Cairo University's Prosthodontics Department.",
+    },
+    serviceSlugs: ["cosmetic-dentistry", "dental-implants"],
+    image: "photo-1612349317150-e413f6a5b16d",
+    imageAlt: { ar: "صورة استرشادية وليست صورة الطبيب", en: "Illustrative photo, not an official doctor portrait" },
+    qualifications: [],
+  },
+];
+
+export const photos = {
+  hero: "photo-1629909613654-28e377c37b09",
+  rooms: [
+    {
+      id: "reception",
+      image: "photo-1606811971618-4486d14f3f99",
+      title: { ar: "مساحة للابتسامات", en: "A space for brighter smiles" } satisfies Localized,
+      alt: { ar: "عيادة أسنان، صورة استرشادية وليست من مقر ORIS", en: "Dental clinic, illustrative photo not from ORIS" } satisfies Localized,
+    },
+    {
+      id: "consultation",
+      image: "photo-1609840114035-3c981b782dfe",
+      title: { ar: "كل شيء يبدأ بحوار", en: "Every visit starts with a conversation" } satisfies Localized,
+      alt: { ar: "تفاصيل من عيادة أسنان، صورة استرشادية", en: "Dental clinic detail, illustrative stock photo" } satisfies Localized,
+    },
+    {
+      id: "treatment",
+      image: "photo-1629909613654-28e377c37b09",
+      title: { ar: "تقنيات عصرية ورعاية دقيقة", en: "Modern tools, considered care" } satisfies Localized,
+      alt: { ar: "غرفة علاج أسنان، صورة استرشادية", en: "Dental treatment room, illustrative stock photo" } satisfies Localized,
+    },
+  ],
+};
+
+export const copy = {
+  ar: {
+    nav: {
+      home: "الرئيسية",
+      about: "عن ORIS",
+      services: "الخدمات",
+      doctors: "الأطباء",
+      contact: "تواصل معنا",
+      appointment: "اطلب موعدًا",
+    },
+    utility: { hours: "مواعيد العمل", contact: "اتصل بالعيادة", city: "القاهرة الجديدة" },
+    home: {
+      eyebrow: "ORIS لطب الأسنان في القاهرة الجديدة",
+      headline: "ابتسامتك تبدأ بخطة واضحة.",
+      intro: "من التجميل والترميم إلى الرعاية اليومية. ناقش الخيارات والتكلفة مع طبيبك قبل أن تقرر.",
+      primary: "اطلب استشارة",
+      secondary: "استكشف علاجات الأسنان",
+      heroAlt: "غرفة علاج أسنان عصرية، صورة استرشادية",
+      imageNote: "صورة توضيحية وليست من مقر ORIS.",
+      introTitle: "قرارك يبدأ بمعلومة واضحة.",
+      introBody: "ابدأ باستشارة، تعرّف على الخيارات المناسبة لحالتك، وناقش التفاصيل قبل بدء أي علاج.",
+      valueOne: "نشرح الخيارات والتكلفة قبل بدء العلاج.",
+      valueTwo: "نخطط للرعاية بما يناسب حالتك.",
+      servicesTitle: "تخصصات متعددة. بداية واحدة.",
+      servicesBody: "من الفحص العام إلى التجميل والترميم، استكشف التخصصات وناقش احتياجك مع الفريق.",
+      teamTitle: "تعرّف على فريق ORIS.",
+      teamBody: "اطّلع على تخصصاتهم، وتأكد من تفاصيل التوفر عند التواصل مع العيادة.",
+      approachTitle: "خطة العلاج تبدأ من احتياجك.",
+      approachBody: "ناقش أولوياتك مع الطبيب، واستكشف الخيارات وتكلفتها قبل اتخاذ القرار. تتحدد الخطة المناسبة بعد الفحص.",
+      approachLink: "تعرّف على ORIS",
+      galleryTitle: "مساحات هادئة لزيارة أكثر راحة.",
+      galleryBody: "الصور هنا توضيحية. استبدلها بصور ORIS الأصلية بعد الحصول على موافقة استخدامها.",
+      processTitle: "من طلب الموعد إلى تأكيده.",
+      processBody: "أرسل بيانات التنسيق الأساسية. سيتواصل معك الاستقبال لمراجعة الموعد المناسب.",
+      process: [
+        { title: "اختر التخصص", body: "حدّد الخدمة التي ترغب في الاستفسار عنها." },
+        { title: "أرسل طلبك", body: "اختر اليوم وأضف بيانات التواصل الأساسية." },
+        { title: "تأكيد من الفريق", body: "يؤكد فريق الاستقبال الوقت المناسب معك." },
+      ],
+      faqTitle: "أسئلة قبل زيارتك.",
+      faqs: [
+        { q: "أين تقع ORIS؟", a: "تقع العيادة في القاهرة الجديدة. تواصل مع الاستقبال لمعرفة العنوان التفصيلي والاتجاهات." },
+        { q: "ما مواعيد العمل؟", a: "من السبت إلى الخميس، من ١٢ ظهرًا حتى ١٠ مساءً. العيادة مغلقة يوم الجمعة." },
+        { q: "كيف أطلب موعدًا؟", a: "أرسل طلب الموعد عبر الموقع، وسيتواصل معك الفريق لتأكيد التوقيت. إرسال الطلب لا يحجز موعدًا تلقائيًا." },
+        { q: "هل أكتب تفاصيل طبية في النموذج؟", a: "لا. النموذج مخصص للتنسيق الإداري فقط. لا تشارك أعراضًا أو معلومات صحية فيه." },
+      ],
+      contactTitle: "هل لديك سؤال قبل الزيارة؟",
+      contactBody: "تواصل مع فريق ORIS للاستفسار عن الخدمات أو تفاصيل الزيارة.",
+    },
+    about: {
+      title: "ابتسامة واثقة تبدأ برعاية دقيقة.",
+      intro: "ORIS عيادة متخصصة في طب الأسنان التجميلي والترميمي، تجمع بين التخطيط الدقيق والتقنيات الحديثة.",
+      storyTitle: "عن ORIS",
+      storyBody: "يركز فريق ORIS على تقديم رعاية أسنان تراعي الوظيفة والجمال، مع شرح الخيارات والتكلفة للمريض قبل بدء أي علاج.",
+      approachTitle: "نهجنا في الرعاية",
+      values: [
+        { title: "تخطيط رقمي", body: "تساعد أدوات التصوير والتخطيط على توضيح تفاصيل الخطة قبل بدء العلاج." },
+        { title: "فريق متخصص", body: "يجمع الفريق تخصصات مختلفة لمناقشة احتياجات الأسنان." },
+        { title: "خطة تناسبك", body: "تُناقش الخيارات والتكلفة معك قبل اتخاذ قرار العلاج." },
+      ],
+      galleryTitle: "بيئة عيادة مصممة لراحتك.",
+      disclaimer: "الصور المعروضة استرشادية وليست صورًا أصلية لعيادة ORIS.",
+    },
+    services: {
+      title: "تخصصات طب الأسنان.",
+      intro: "تعرّف على الخدمات التي يقدمها فريق ORIS، ثم ناقش خياراتك مع الطبيب.",
+      filterLabel: "تصفية تخصصات الأسنان",
+      categories: { all: "كل التخصصات", general: "طب الأسنان العام", cosmetic: "تجميل الأسنان", restorative: "الترميمات", surgical: "التخصصات الجراحية" },
+      notFound: "لم نعثر على هذه الخدمة.",
+      detailTitle: "حول الخدمة",
+      detailNote: "المعلومات هنا تعريفية ولا تُعد تشخيصًا أو نصيحة طبية.",
+    },
+    doctors: {
+      title: "أطباء ORIS.",
+      intro: "تعرّف على أطباء العيادة وتخصصاتهم. تحقق من التفاصيل مع العيادة قبل الحجز.",
+      profileNote: "الصورة استرشادية وليست صورة رسمية للطبيب.",
+      biography: "نبذة عن الطبيب",
+      qualifications: "المؤهلات",
+      qualificationsEmpty: "تواصل مع العيادة للتأكد من تفاصيل المؤهلات.",
+      services: "التخصصات المرتبطة",
+      notFound: "لم نعثر على هذا الملف.",
+    },
+    appointment: {
+      title: "احجز استشارتك.",
+      intro: "اختر الخدمة واليوم المناسبين. سيتواصل معك فريق ORIS لتأكيد الموعد.",
+      name: "الاسم الكامل",
+      phone: "رقم الهاتف",
+      service: "الخدمة المطلوبة",
+      chooseService: "اختر خدمة",
+      day: "اليوم المفضل",
+      time: "الفترة المناسبة",
+      timeOptions: ["اختر فترة", "من ١٢ ظهرًا إلى ٤ مساءً", "من ٤ إلى ٧ مساءً", "من ٧ إلى ١٠ مساءً"],
+      note: "ملاحظة إدارية اختيارية",
+      noteHint: "لا تكتب أعراضًا أو معلومات طبية هنا.",
+      submit: "إرسال طلب الموعد",
+      privacy: "لن تُحفظ البيانات في هذا الموقع. لا تُرسل إلا عند اختيارك إرسال الطلب، ومن خلال واتساب إذا أُضيف رقم فعلي للإعدادات.",
+      disclaimer: "طلب الموعد غير مؤكد حتى يتواصل معك فريق الاستقبال.",
+      errors: {
+        name: "يرجى كتابة الاسم.",
+        phone: "أدخل رقم هاتف صحيحًا للتواصل.",
+        service: "اختر الخدمة المطلوبة.",
+        day: "اختر اليوم المفضل.",
+      },
+      success: "تم فتح واتساب برسالة الطلب. الموعد غير مؤكد حتى يرد فريق الاستقبال.",
+      noWhatsApp: "لم تُرسل بياناتك. تعذّر فتح واتساب. تواصل مع العيادة مباشرة.",
+      popupBlocked: "تعذر فتح واتساب. اسمح بفتح النافذة المنبثقة ثم أعد إرسال الطلب.",
+    },
+    contact: {
+      title: "تواصل مع ORIS.",
+      intro: "فريق العيادة جاهز للإجابة عن استفساراتك ومساعدتك في طلب موعد.",
+      address: "العنوان",
+      hours: "ساعات العمل",
+      phone: "الهاتف",
+      whatsapp: "واتساب",
+      email: "البريد الإلكتروني",
+      addressMissing: "القاهرة الجديدة، مصر. تواصل معنا للعنوان التفصيلي.",
+      contactMissing: "العنوان التفصيلي ورابط الاتجاهات غير مضافين.",
+      requestLink: "اطلب موعدًا",
+    },
+    privacy: {
+      title: "الخصوصية وبيانات التواصل.",
+      intro: "يوضح هذا النموذج كيفية التعامل مع بيانات طلب الموعد في نسخة الموقع الأمامية.",
+      sections: [
+        { title: "لا يتم حفظ بيانات النموذج", body: "لا يرسل الموقع بياناتك تلقائيًا ولا يحفظها في قاعدة بيانات أو مساحة تخزين على الجهاز." },
+        { title: "الإرسال باختيارك", body: "لا تُفتح رسالة واتساب إلا بعد إرسال النموذج يدويًا، وبعد إضافة رقم فعلي معتمد لإعدادات العيادة. يمكنك مراجعة الرسالة قبل إرسالها." },
+        { title: "البيانات المطلوبة", body: "يطلب النموذج اسمك ورقم هاتفك والخدمة واليوم والفترة المفضلة. لا تكتب أعراضًا أو تاريخًا مرضيًا أو أي معلومات صحية حساسة." },
+        { title: "ملاحظة إدارية", body: "الملاحظة الاختيارية لا تدخل ضمن رسالة واتساب. لا تستخدمها لمشاركة معلومات صحية." },
+      ],
+    },
+    common: {
+      readMore: "اعرف المزيد",
+      allServices: "كل الخدمات",
+      allDoctors: "كل الأطباء",
+      backHome: "العودة إلى الرئيسية",
+      imageDisclosure: "الصور استرشادية وليست صورًا فعلية لعيادة ORIS أو أطبائها.",
+      demoNotice: "مفهوم موقع مستقل. يجب تأكيد النصوص والصور قبل النشر.",
+      footerDisclaimer: "المعلومات للتعريف فقط ولا تغني عن استشارة طبيب أسنان.",
+      copyright: "جميع الحقوق محفوظة.",
+      serviceLabel: "الخدمة",
+      notFoundTitle: "هذه الصفحة غير متاحة.",
+      notFoundBody: "تحقق من الرابط أو عد إلى الصفحة الرئيسية.",
+    },
+    meta: {
+      home: "موقع ORIS Dental Clinic لطب الأسنان في القاهرة الجديدة. استكشف التخصصات واطلب استشارة.",
+      about: "تعرّف على عيادة ORIS ونهجها في طب الأسنان التجميلي والترميمي.",
+      services: "استكشف تخصصات وخدمات طب الأسنان في ORIS بالقاهرة الجديدة.",
+      doctors: "تعرّف على أطباء ORIS وتخصصاتهم.",
+      appointment: "أرسل طلب حجز إلى ORIS. الموعد غير مؤكد حتى يتواصل معك الفريق.",
+      contact: "تواصل مع ORIS Dental Clinic في القاهرة الجديدة.",
+      privacy: "تعرّف على طريقة تعامل نموذج ORIS مع بيانات طلب الموعد.",
+      notFound: "الصفحة المطلوبة غير متاحة في نموذج ORIS.",
+    },
+  },
+  en: {
+    nav: {
+      home: "Home",
+      about: "About",
+      services: "Services",
+      doctors: "Doctors",
+      contact: "Contact",
+      appointment: "Request a visit",
+    },
+    utility: { hours: "Opening hours", contact: "Call ORIS", city: "New Cairo" },
+    home: {
+      eyebrow: "ORIS Dental Clinic in New Cairo",
+      headline: "A clear plan for your smile.",
+      intro: "From cosmetic and restorative care to everyday dentistry. Discuss options and fees with your dentist before you decide.",
+      primary: "Request a consultation",
+      secondary: "Explore dental care",
+      heroAlt: "Modern dental treatment room, illustrative stock photo",
+      imageNote: "Illustrative stock photo, not from ORIS.",
+      introTitle: "Start with clear information.",
+      introBody: "Begin with a consultation, explore options for your needs, and discuss the details before treatment begins.",
+      valueOne: "Understand options and fees before treatment.",
+      valueTwo: "Care plans tailored to your needs.",
+      servicesTitle: "Different specialties. One place to start.",
+      servicesBody: "From general dentistry to cosmetic and restorative care, explore specialties and discuss your needs with the team.",
+      teamTitle: "Meet the ORIS team.",
+      teamBody: "Explore their specialties and confirm availability with the clinic before booking.",
+      approachTitle: "A treatment plan starts with you.",
+      approachBody: "Discuss your priorities with a dentist, review options and fees, and decide how to proceed. A suitable plan follows an examination.",
+      approachLink: "Discover ORIS",
+      galleryTitle: "A calmer space for your visit.",
+      galleryBody: "Illustrative photography. Replace with ORIS-owned images once their use is approved.",
+      processTitle: "From request to confirmation.",
+      processBody: "Share basic scheduling details. Reception will contact you to discuss a suitable appointment.",
+      process: [
+        { title: "Choose a specialty", body: "Select the dental service you would like to discuss." },
+        { title: "Send a request", body: "Choose a day and share basic contact details." },
+        { title: "Confirm with the team", body: "Reception follows up to agree on a suitable time." },
+      ],
+      faqTitle: "Before your visit.",
+      faqs: [
+        { q: "Where is ORIS Dental Clinic?", a: "ORIS is in New Cairo, Egypt. Contact the clinic for the detailed address and directions." },
+        { q: "When is the clinic open?", a: "Saturday to Thursday, from 12:00 pm to 10:00 pm. The clinic is closed on Fridays." },
+        { q: "How do I book an appointment?", a: "Send a request through the website and the team will contact you to confirm a suitable time. Submitting a request does not book an appointment automatically." },
+        { q: "Should I include health information in the form?", a: "No. The form is for administrative coordination only. Do not share symptoms or health details." },
+      ],
+      contactTitle: "Have a question before your visit?",
+      contactBody: "Contact ORIS to ask about services or plan your visit.",
+    },
+    about: {
+      title: "Confident smiles begin with considered care.",
+      intro: "ORIS is a dental clinic in New Cairo focused on aesthetic and restorative dentistry, with careful planning and modern technology.",
+      storyTitle: "About ORIS",
+      storyBody: "The ORIS team brings together dental specialties focused on function and aesthetics, with care options and fees explained before treatment begins.",
+      approachTitle: "Our approach to dental care",
+      values: [
+        { title: "Digital planning", body: "Digital planning tools help make treatment discussions clearer before care begins." },
+        { title: "Specialist team", body: "The team brings different dental specialties together to discuss your needs." },
+        { title: "A plan for you", body: "Options and costs are discussed before you decide how to proceed." },
+      ],
+      galleryTitle: "A considered clinical environment.",
+      disclaimer: "Illustrative stock images, not original photos of ORIS Dental Clinic.",
+    },
+    services: {
+      title: "Dental specialties.",
+      intro: "Explore the services offered by the ORIS team, then discuss your options with a dentist.",
+      filterLabel: "Filter dental specialties",
+      categories: { all: "All specialties", general: "General dentistry", cosmetic: "Cosmetic dentistry", restorative: "Restorative care", surgical: "Surgical specialties" },
+      notFound: "We could not find this service.",
+      detailTitle: "About this service",
+      detailNote: "This information is introductory and is not medical advice or a diagnosis.",
+    },
+    doctors: {
+      title: "The ORIS dental team.",
+      intro: "Meet the clinic's dentists and explore their specialties. Confirm current details with the clinic before booking.",
+      profileNote: "Illustrative stock photo, not an official portrait of this dentist.",
+      biography: "About the dentist",
+      qualifications: "Qualifications",
+      qualificationsEmpty: "Contact the clinic to confirm qualification details.",
+      services: "Related specialties",
+      notFound: "We could not find this profile.",
+    },
+    appointment: {
+      title: "Book a consultation.",
+      intro: "Choose a service and preferred day. The ORIS team will contact you to confirm the appointment.",
+      name: "Full name",
+      phone: "Phone number",
+      service: "Requested service",
+      chooseService: "Choose a service",
+      day: "Preferred day",
+      time: "Preferred time",
+      timeOptions: ["Choose a time", "12:00 pm to 4:00 pm", "4:00 pm to 7:00 pm", "7:00 pm to 10:00 pm"],
+      note: "Optional administrative note",
+      noteHint: "Do not include symptoms or medical information.",
+      submit: "Send appointment request",
+      privacy: "Your details are not stored on this website. WhatsApp opens only after you submit the form, and you can review the message before sending it.",
+      disclaimer: "Your appointment is not confirmed until reception contacts you.",
+      errors: {
+        name: "Please enter your name.",
+        phone: "Enter a valid phone number for contact.",
+        service: "Choose a service.",
+        day: "Choose your preferred day.",
+      },
+      success: "WhatsApp opened with your request. The appointment is not confirmed until reception replies.",
+      noWhatsApp: "Your details were not sent. WhatsApp could not be opened. Please contact the clinic directly.",
+      popupBlocked: "WhatsApp could not be opened. Allow pop-ups, then submit your request again.",
+    },
+    contact: {
+      title: "Contact ORIS.",
+      intro: "The ORIS team is here to answer your questions and help you request an appointment.",
+      address: "Address",
+      hours: "Opening hours",
+      phone: "Phone",
+      whatsapp: "WhatsApp",
+      email: "Email",
+      addressMissing: "New Cairo, Egypt. Contact us for the detailed address.",
+      contactMissing: "A detailed address and directions link are not included here.",
+      requestLink: "Request a visit",
+    },
+    privacy: {
+      title: "Privacy and your appointment request.",
+      intro: "This page explains how the appointment request form on this website handles the information you enter.",
+      sections: [
+        { title: "Form details are not stored", body: "The website does not send your details automatically or save them in a database or on your device." },
+        { title: "You choose whether to send", body: "WhatsApp opens only after you submit the form. You can review the message before sending it." },
+        { title: "Information requested", body: "The form asks for your name, phone number, requested service, preferred day, and time range. Do not enter symptoms, medical history, or sensitive health information." },
+        { title: "Optional administrative note", body: "The optional note is not included in the WhatsApp message. Do not use it to share health information." },
+      ],
+    },
+    common: {
+      readMore: "Learn more",
+      allServices: "All services",
+      allDoctors: "All doctors",
+      backHome: "Back to home",
+      imageDisclosure: "Illustrative stock images, not photos of the actual clinic or doctors.",
+      demoNotice: "Independent website concept. Confirm content and imagery before publication.",
+      footerDisclaimer: "Website information is introductory and does not replace advice from a dental professional.",
+      copyright: "All rights reserved.",
+      serviceLabel: "Service",
+      notFoundTitle: "This page is unavailable.",
+      notFoundBody: "Check the link or return to the home page.",
+    },
+    meta: {
+      home: "Explore dental specialties and request a consultation at ORIS Dental Clinic in New Cairo.",
+      about: "Learn about ORIS Dental Clinic's approach to cosmetic and restorative dentistry.",
+      services: "Explore the dental specialties offered at ORIS in New Cairo.",
+      doctors: "Meet dentists at ORIS Dental Clinic and explore their specialties.",
+      appointment: "Request an appointment at ORIS. The clinic team will contact you to confirm.",
+      contact: "Contact ORIS Dental Clinic in New Cairo, Egypt.",
+      privacy: "Learn how the ORIS website concept handles appointment request details.",
+      notFound: "The requested page is not available in this ORIS website concept.",
+    },
+  },
+} as const;
