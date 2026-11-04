@@ -232,7 +232,7 @@ function Header({
         <div className="header-inner page-width">
           <RouteLink route={{ lang: route.lang, page: "home" }} navigate={navigate} className="brand" ariaLabel={clinic.name[route.lang]}>
             <span className="brand-copy brand-copy-logo">
-              <strong>ORIS</strong>
+              <strong>SUPER CLINIC</strong>
               <small>{clinic.descriptor[route.lang]}</small>
             </span>
           </RouteLink>
@@ -629,7 +629,7 @@ function AppointmentPage({ lang }: { lang: Language }) {
     const selectedService = services.find((item) => item.slug === values.service);
     const timing = [values.day, values.time].filter(Boolean).join(" / ");
     const message = [
-      lang === "ar" ? "طلب موعد من موقع ORIS Dental Clinic" : "Appointment request from the ORIS Dental Clinic website",
+      lang === "ar" ? "طلب موعد من موقع SUPER CLINIC" : "Appointment request from the SUPER CLINIC website",
       `${t.appointment.name}: ${values.name.trim()}`,
       `${t.appointment.phone}: ${phone}`,
       `${t.appointment.service}: ${selectedService?.title[lang] ?? values.service}`,
@@ -812,7 +812,7 @@ function Footer({ lang, navigate }: { lang: Language; navigate: (path: string) =
       <div className="page-width footer-main">
         <div className="footer-brand">
           <RouteLink route={{ lang, page: "home" }} navigate={navigate} className="brand">
-            <span className="brand-copy brand-copy-logo"><strong>ORIS</strong><small>{clinic.descriptor[lang]}</small></span>
+            <span className="brand-copy brand-copy-logo"><strong>SUPER CLINIC</strong><small>{clinic.descriptor[lang]}</small></span>
           </RouteLink>
           <p>{t.common.footerDisclaimer}</p>
         </div>

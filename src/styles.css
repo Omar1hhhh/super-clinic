@@ -201,9 +201,9 @@ p {
 
 .brand-copy-logo strong {
   color: var(--ink);
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 550;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   line-height: 1.1;
 }
 
@@ -1757,7 +1757,7 @@ p {
   }
 
   .brand-copy-logo strong {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .menu-toggle {
