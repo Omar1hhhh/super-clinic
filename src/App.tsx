@@ -31,8 +31,8 @@ function routePath(route: Route): string {
   return `${prefix}/${route.page}`;
 }
 
-function photoUrl(id: string, width = 1100): string {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
+function photoUrl(id: string, _width = 1100): string {
+  return `${import.meta.env.BASE_URL}images/${id}.svg`;
 }
 
 function normalizePhoneDigits(value: string): string {
@@ -40,13 +40,6 @@ function normalizePhoneDigits(value: string): string {
     const code = digit.charCodeAt(0);
     return String(code >= 0x06f0 ? code - 0x06f0 : code - 0x0660);
   });
-}
-
-function formatPhoneDisplay(value: string): string {
-  const digits = value.replace(/\D/g, "");
-  const localNumber = digits.startsWith("20") ? `0${digits.slice(2)}` : digits;
-  const match = localNumber.match(/^(01[0125])(\d{4})(\d{4})$/);
-  return match ? `${match[1]} ${match[2]} ${match[3]}` : value;
 }
 
 function useLocalNavigation() {
@@ -159,26 +152,26 @@ function titleFor(route: Route): string {
   }
   const pageTitles = {
     ar: {
-      home: "طب الأسنان التجميلي والترميمي",
-      about: "عن العيادات",
-      services: "الخدمات",
+      home: "أفينورا | نموذج تجريبي خيالي",
+      about: "عن مشروع أفينورا الخيالي",
+      services: "خدمات توضيحية",
       service: "الخدمات",
-      doctors: "الأطباء",
+      doctors: "شخصيات خيالية",
       doctor: "الفريق الطبي",
-      appointment: "طلب موعد",
-      contact: "تواصل معنا",
+      appointment: "نموذج موعد تجريبي",
+      contact: "تواصل تجريبي",
       privacy: "الخصوصية",
       notFound: "الصفحة غير متاحة",
     },
     en: {
-      home: "Cosmetic and restorative dentistry",
-      about: "About the clinic",
-      services: "Services",
+      home: "Fictional dental portfolio demo",
+      about: "About the fictional Avenora concept",
+      services: "Sample dental services",
       service: "Services",
-      doctors: "Doctors",
+      doctors: "Fictional demo profiles",
       doctor: "Medical team",
-      appointment: "Request a visit",
-      contact: "Contact",
+      appointment: "Demo appointment form",
+      contact: "Demo contact page",
       privacy: "Privacy",
       notFound: "Page unavailable",
     },
@@ -232,7 +225,7 @@ function Header({
         <div className="header-inner page-width">
           <RouteLink route={{ lang: route.lang, page: "home" }} navigate={navigate} className="brand" ariaLabel={clinic.name[route.lang]}>
             <span className="brand-copy brand-copy-logo">
-              <strong>ORIS</strong>
+              <strong>{clinic.shortName[route.lang]}</strong>
               <small>{clinic.descriptor[route.lang]}</small>
             </span>
           </RouteLink>
@@ -315,15 +308,15 @@ function HomePage({ lang, navigate }: { lang: Language; navigate: (path: string)
 
       <section className="landing-proof-strip page-width" aria-label={lang === "ar" ? "معلومات عن العيادة" : "Clinic information"}>
         <div>
-          <span>{lang === "ar" ? "الموقع" : "Location"}</span>
+          <span>{lang === "ar" ? "نوع المشروع" : "Project type"}</span>
           <strong>{clinic.city[lang]}</strong>
         </div>
         <div>
-          <span>{lang === "ar" ? "مواعيد العمل" : "Opening hours"}</span>
+          <span>{lang === "ar" ? "البيانات الواقعية" : "Real-world details"}</span>
           <strong>{clinic.hours[lang]}</strong>
         </div>
         <div>
-          <span>{lang === "ar" ? "قبل بدء العلاج" : "Before treatment"}</span>
+          <span>{lang === "ar" ? "المحتوى" : "Content"}</span>
           <strong>{t.home.valueOne}</strong>
         </div>
       </section>
@@ -621,28 +614,7 @@ function AppointmentPage({ lang }: { lang: Language }) {
       return;
     }
 
-    const whatsapp = clinic.contact.whatsapp.replace(/\D/g, "");
-    if (!whatsapp) {
-      setStatus({ kind: "error", message: t.appointment.noWhatsApp });
-      return;
-    }
-    const selectedService = services.find((item) => item.slug === values.service);
-    const timing = [values.day, values.time].filter(Boolean).join(" / ");
-    const message = [
-      lang === "ar" ? "طلب موعد من موقع ORIS Dental Clinic" : "Appointment request from the ORIS Dental Clinic website",
-      `${t.appointment.name}: ${values.name.trim()}`,
-      `${t.appointment.phone}: ${phone}`,
-      `${t.appointment.service}: ${selectedService?.title[lang] ?? values.service}`,
-      `${t.appointment.day}: ${timing}`,
-    ].join("\n");
-    const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
-    const popup = window.open(url, "_blank");
-    if (popup) {
-      popup.opener = null;
-      setStatus({ kind: "success", message: t.appointment.success });
-    } else {
-      setStatus({ kind: "error", message: t.appointment.popupBlocked });
-    }
+    setStatus({ kind: "success", message: t.appointment.success });
   };
 
   return (
@@ -704,29 +676,32 @@ function Field({ label, error, id, hint, className = "", children }: { label: st
 
 function ContactPage({ lang, navigate }: { lang: Language; navigate: (path: string) => void }) {
   const t = copy[lang];
-  const { contact } = clinic;
-  const phone = contact.phone.trim();
-  const whatsapp = contact.whatsapp.replace(/\D/g, "");
-  const email = contact.email.trim();
+  const [contactStatus, setContactStatus] = useState("");
   return (
     <PageIntro title={t.contact.title} body={t.contact.intro} lang={lang}>
       <section className="contact-page-section page-width section-pad">
         <div className="contact-details-grid">
           <article className="contact-detail">
             <span>{t.contact.address}</span>
-            <h2>{contact.address || t.contact.addressMissing}</h2>
-            {contact.address && contact.directionsUrl && <a className="text-link" href={contact.directionsUrl} target="_blank" rel="noreferrer">{lang === "ar" ? "الاتجاهات" : "Directions"}<span aria-hidden="true">↗</span></a>}
+            <h2>{t.contact.addressMissing}</h2>
           </article>
           <article className="contact-detail">
             <span>{t.contact.hours}</span>
             <h2>{clinic.hours[lang]}</h2>
-            <p>{t.utility.hours}</p>
+            <p>{t.contact.contactMissing}</p>
           </article>
-          {phone && <article className="contact-detail"><span>{t.contact.phone}</span><h2><a href={`tel:${phone}`}>{formatPhoneDisplay(phone)}</a></h2></article>}
-          {whatsapp && <article className="contact-detail"><span>{t.contact.whatsapp}</span><h2><a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer">{t.contact.whatsapp}</a></h2></article>}
-          {email && <article className="contact-detail"><span>{t.contact.email}</span><h2><a href={`mailto:${email}`}>{email}</a></h2></article>}
+          <article className="contact-detail">
+            <span>{t.contact.whatsapp}</span>
+            <h2>{t.contact.contactMissing}</h2>
+            <button type="button" className="button button-primary" onClick={() => setContactStatus(t.contact.demoContactStatus)}>{t.contact.whatsapp}</button>
+          </article>
+          <article className="contact-detail">
+            <span>{t.contact.phone}</span>
+            <h2>{t.contact.contactMissing}</h2>
+            <button type="button" className="button button-primary" onClick={() => setContactStatus(t.contact.demoContactStatus)}>{t.contact.phone}</button>
+          </article>
         </div>
-        <p className="contact-missing-note">{t.contact.contactMissing}</p>
+        {contactStatus && <p className="contact-missing-note" role="status">{contactStatus}</p>}
         <p className="contact-missing-note">{t.common.demoNotice}</p>
         <RouteLink route={{ lang, page: "appointment" }} navigate={navigate} className="button button-primary">{t.contact.requestLink}</RouteLink>
       </section>
@@ -812,7 +787,7 @@ function Footer({ lang, navigate }: { lang: Language; navigate: (path: string) =
       <div className="page-width footer-main">
         <div className="footer-brand">
           <RouteLink route={{ lang, page: "home" }} navigate={navigate} className="brand">
-            <span className="brand-copy brand-copy-logo"><strong>ORIS</strong><small>{clinic.descriptor[lang]}</small></span>
+            <span className="brand-copy brand-copy-logo"><strong>{clinic.shortName[lang]}</strong><small>{clinic.descriptor[lang]}</small></span>
           </RouteLink>
           <p>{t.common.footerDisclaimer}</p>
         </div>
@@ -823,8 +798,7 @@ function Footer({ lang, navigate }: { lang: Language; navigate: (path: string) =
         <div className="footer-contact">
           <span>{clinic.city[lang]}</span>
           <span>{clinic.hours[lang]}</span>
-          {clinic.contact.phone && <a href={`tel:${clinic.contact.phone}`}>{formatPhoneDisplay(clinic.contact.phone)}</a>}
-          {clinic.contact.email && <a href={`mailto:${clinic.contact.email}`}>{clinic.contact.email}</a>}
+          <span>{t.common.demoNotice}</span>
         </div>
       </div>
       <div className="page-width footer-bottom">
@@ -839,17 +813,12 @@ function Footer({ lang, navigate }: { lang: Language; navigate: (path: string) =
 
 function MobileContactBar({ lang }: { lang: Language }) {
   const t = copy[lang];
-  const phone = clinic.contact.phone;
-  const whatsapp = clinic.contact.whatsapp.replace(/\D/g, "");
-  if (!phone && !whatsapp) return null;
+  const [notice, setNotice] = useState("");
   return (
     <nav className="mobile-contact-bar" aria-label={lang === "ar" ? "التواصل السريع" : "Quick contact"}>
-      {whatsapp && (
-        <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer">
-          {t.contact.whatsapp}
-        </a>
-      )}
-      {phone && <a href={`tel:${phone}`}>{t.contact.phone}</a>}
+      <button type="button" onClick={() => setNotice(t.contact.demoContactStatus)}>{t.contact.whatsapp}</button>
+      <button type="button" onClick={() => setNotice(t.contact.demoContactStatus)}>{t.contact.phone}</button>
+      {notice && <span className="mobile-demo-status" role="status">{notice}</span>}
     </nav>
   );
 }

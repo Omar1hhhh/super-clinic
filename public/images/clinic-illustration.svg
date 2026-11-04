@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1150" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="120" y1="110" x2="1260" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDF4F0"/>
+      <stop offset="1" stop-color="#C9DDD3"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="170" y1="170" x2="690" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8ECE7"/>
+      <stop offset="1" stop-color="#A7C9BE"/>
+    </linearGradient>
+  </defs>
+  <path fill="#E0EBE5" d="M0 0h1500v1150H0z"/>
+  <path fill="url(#wall)" d="M0 0h1500v806H0z"/>
+  <path fill="#F8FAF8" d="M0 806h1500v344H0z"/>
+  <path fill="url(#glass)" d="M110 118h476v568H110z"/>
+  <path stroke="#F8FAF8" stroke-width="20" d="M348 118v568M110 402h476"/>
+  <path fill="#DAE8E1" d="M850 118h520v326H850z"/>
+  <path fill="#F7FAF8" d="M886 155h448v254H886z"/>
+  <path fill="#AFC9BE" d="M957 260h76v149h-76zM1074 212h76v197h-76zM1192 289h76v120h-76z"/>
+  <path fill="#B7CDC2" d="M0 744h1500v62H0z"/>
+  <ellipse cx="898" cy="973" fill="#9AB5A8" rx="354" ry="56"/>
+  <path fill="#28715D" d="M844 420c-95 41-144 123-135 229l19 191c4 41 36 70 77 70h186c42 0 75-33 75-75V620c0-126-95-225-222-225Z"/>
+  <path fill="#1D5B4A" d="M855 504c-54 47-74 113-64 192l28 211h116l20-256c7-80-30-137-100-147Z"/>
+  <path fill="#E1ECE6" d="M793 552c-93 1-158 46-182 125l-46 154c-12 41 13 80 55 88l51 10c34 7 68-14 77-48l50-185 83-7-13-103c-3-24-20-35-75-34Z"/>
+  <path fill="#F7FAF8" d="m654 750-53 169c-8 26 9 53 36 59l31 7c26 5 51-10 57-36l44-179-115-20Z"/>
+  <path fill="#E1ECE6" d="M984 557c89-27 160-4 199 64l75 130c20 35 3 80-35 95l-46 18c-33 12-70-3-84-35l-83-167-83 17-28-100c-7-24 0-35 85-22Z"/>
+  <path fill="#F7FAF8" d="m1180 733 88 153c13 24 2 54-22 66l-29 15c-23 12-52 3-64-20l-83-163 110-51Z"/>
+  <path fill="#A4C1B4" d="M131 837h312v23H131zM132 918h264v21H132z"/>
+  <path fill="#28715D" d="M140 1045c9-90 36-146 82-168-5 72-29 127-70 170h-12ZM192 1045c-1-83 18-145 60-185 14 67-1 129-48 185h-12ZM140 1048c-28-76-27-134 5-176 27 57 30 116 6 176h-11Z"/>
+  <path fill="#8EAFA0" d="M76 1048h184v17H76z"/>
+</svg>

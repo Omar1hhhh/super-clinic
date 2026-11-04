@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page redirect</title>
+  </head>
+  <body>
+    <script>
+      const basePath = "/avenora-dental/";
+      const requestedPath = location.pathname.startsWith(basePath)
+        ? location.pathname.slice(basePath.length)
+        : "";
+      const requestedRoute = `${requestedPath}${location.search}${location.hash}`;
+      location.replace(`${basePath}?p=${encodeURIComponent(requestedRoute)}`);
+    </script>
+  </body>
+</html>

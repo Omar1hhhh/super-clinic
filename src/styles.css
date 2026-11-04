@@ -1703,22 +1703,38 @@ p {
     box-shadow: 0 -7px 22px rgb(48 40 32 / 12%);
   }
 
-  .mobile-contact-bar a {
+  .mobile-contact-bar a,
+  .mobile-contact-bar button {
     display: grid;
     place-items: center;
     padding: 11px 12px;
+    border: 0;
+    background: transparent;
     color: var(--on-contrast);
     font-size: 15px;
     font-weight: 650;
   }
 
-  .mobile-contact-bar a:first-child {
+  .mobile-contact-bar a:first-child,
+  .mobile-contact-bar button:first-of-type {
     background: var(--button-accent);
     color: #fff;
   }
 
-  .mobile-contact-bar a + a {
+  .mobile-contact-bar a + a,
+  .mobile-contact-bar button + button {
     border-inline-start: 1px solid rgb(255 255 255 / 18%);
+  }
+
+  .mobile-demo-status {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 100%;
+    padding: 10px 16px;
+    background: var(--surface-contrast);
+    color: var(--on-contrast);
+    font-size: 12px;
+    text-align: center;
   }
 
   .page-width {
@@ -2697,7 +2713,8 @@ body {
   background: var(--surface-contrast);
 }
 
-.mobile-contact-bar a:first-child {
+.mobile-contact-bar a:first-child,
+.mobile-contact-bar button:first-of-type {
   background: var(--accent);
 }
 
